@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour {
 	public bool touchingInteractible = false;
 	private Interactible currentInteractible;
 
+	public bool touchingStairs = false;
+	private Stairs currentStairs;
+
 	private Status status;
 
 	// Use this for initialization
@@ -60,6 +63,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+
+		//Colliders for Doors
 		if (other.GetComponent<Door> ()) {
 			touchingDoor = true;
 			currentDoor = other.GetComponent<Door> ();
@@ -71,9 +76,26 @@ public class PlayerMovement : MonoBehaviour {
 				}
 			}
 		}
+
+		//Colliders for Interactibles
 		if (other.GetComponent<Interactible> ()) {
 			touchingInteractible = true;
 			currentInteractible = other.GetComponent<Interactible> ();
+		}
+
+		//Colliders for barriers
+		if (other.GetComponent<Collider2D>().tag == "Barrier") {
+			if (other.transform.position.x > transform.position.x) {
+				canMoveToRight = false;
+			} else {
+				canMoveToLeft = false;
+			}
+		}
+
+		//Colliders for stairs
+		if (other.GetComponent<Stairs> ()) {
+			touchingStairs = true;
+			currentStairs = other.GetComponent<Stairs> ();
 		}
 	}
 
@@ -91,6 +113,18 @@ public class PlayerMovement : MonoBehaviour {
 		if (other.GetComponent<Interactible> ()) {
 			touchingInteractible = false;
 			currentInteractible = other.GetComponent<Interactible> ();
+		}
+		if (other.GetComponent<Collider2D>().tag == "Barrier") {
+			if (!canMoveToRight) {
+				canMoveToRight = true;
+			} 
+			if (!canMoveToLeft) {
+				canMoveToLeft = true;
+			}
+		}
+
+		if (other.GetComponent<Stairs> ()) {
+			touchingStairs = false;
 		}
 	}
 
@@ -137,6 +171,23 @@ public class PlayerMovement : MonoBehaviour {
 				timeSinceDash = 0f;
 			}
 		}
+
+		if (touchingStairs) {
+			if (Input.GetAxis ("Vertical") > 0) {
+				
+			}
+			if (Input.GetAxis ("Vertical") < 0) {
+				
+			}
+		}
+
+	}
+
+	void GoUpstairs(){
+		
+	}
+
+	void GoDownstairs(){
 
 	}
 

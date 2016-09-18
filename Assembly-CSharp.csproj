@@ -49,6 +49,7 @@
      <Compile Include="Assets\EnemyMovement.cs" />
      <Compile Include="Assets\Interactible.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
+     <Compile Include="Assets\Stairs.cs" />
      <Compile Include="Assets\Status.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

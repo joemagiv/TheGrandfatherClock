@@ -2,11 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerMovement.cs">
     <Files>
-      <File FileName="Assets\Status.cs" Line="22" Column="3" />
-      <File FileName="Assets\PlayerMovement.cs" Line="13" Column="8" />
-      <File FileName="Assets\Interactible.cs" Line="4" Column="26" />
-      <File FileName="Assets\Door.cs" Line="39" Column="32" />
-      <File FileName="Assets\EnemyMovement.cs" Line="30" Column="5" />
+      <File FileName="Assets\Status.cs" Line="1" Column="1" />
+      <File FileName="Assets\PlayerMovement.cs" Line="187" Column="3" />
+      <File FileName="Assets\Interactible.cs" Line="1" Column="1" />
+      <File FileName="Assets\Door.cs" Line="1" Column="1" />
+      <File FileName="Assets\EnemyMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Stairs.cs" Line="17" Column="52" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
