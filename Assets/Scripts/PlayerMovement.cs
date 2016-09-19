@@ -16,11 +16,15 @@ public class PlayerMovement : MonoBehaviour {
 	public bool touchingDoor = false;
 	private Door currentDoor;
 
+	public float timeAtDoor;
+	public bool isBracing = true;
+
 	public bool touchingInteractible = false;
 	private Interactible currentInteractible;
 
 	public bool touchingStairs = false;
 	private Stairs currentStairs;
+	public bool walkingOnStairs = false;
 
 	private Status status;
 
@@ -109,6 +113,8 @@ public class PlayerMovement : MonoBehaviour {
 			if (!canMoveToLeft) {
 				canMoveToLeft = true;
 			}
+			timeAtDoor = 0f;
+			isBracing = false;
 		}
 		if (other.GetComponent<Interactible> ()) {
 			touchingInteractible = false;
@@ -174,21 +180,56 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (touchingStairs) {
 			if (Input.GetAxis ("Vertical") > 0) {
-				
+				GoUpstairs ();
+				if (walkingOnStairs) {
+					canMoveToLeft = false;
+					canMoveToRight = false;
+				}
 			}
 			if (Input.GetAxis ("Vertical") < 0) {
-				
+				GoDownstairs ();
+				if (walkingOnStairs) {
+					canMoveToLeft = false;
+					canMoveToRight = false;
+				}
+			}
+		}
+
+		//checking for Bracing
+		if (touchingDoor) {
+			if (currentDoor.closed) {
+				timeAtDoor += Time.deltaTime;
+				if (timeAtDoor >= 0.5f) {
+					isBracing = true;
+				}
 			}
 		}
 
 	}
+		
+
 
 	void GoUpstairs(){
-		
+		walkingOnStairs = true;
+
+		Debug.Log (Vector2.Distance (transform.position, currentStairs.topLocation));
+		transform.position = Vector2.MoveTowards (transform.position, currentStairs.topLocation, movementSpeed);
+//		if (transform.position.y >= currentStairs.topLocation.y) {
+		if (Vector2.Distance(transform.position, currentStairs.topLocation) == 0f){
+			walkingOnStairs = false;
+			canMoveToLeft = true;
+			canMoveToRight = true;
+		}
 	}
 
 	void GoDownstairs(){
-
+		walkingOnStairs = true;
+		transform.position = Vector2.MoveTowards (transform.position, currentStairs.bottomLocation, movementSpeed);
+		if (Vector2.Distance(transform.position, currentStairs.bottomLocation) == 0f) {
+			walkingOnStairs = false;
+			canMoveToLeft = true;
+			canMoveToRight = true;
+		}
 	}
 
 	void OpenDoor ()

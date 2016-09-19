@@ -45,12 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Door.cs" />
-     <Compile Include="Assets\EnemyMovement.cs" />
-     <Compile Include="Assets\Interactible.cs" />
-     <Compile Include="Assets\PlayerMovement.cs" />
-     <Compile Include="Assets\Stairs.cs" />
-     <Compile Include="Assets\Status.cs" />
+     <Compile Include="Assets\Scripts\Door.cs" />
+     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+     <Compile Include="Assets\Scripts\Interactible.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Stairs.cs" />
+     <Compile Include="Assets\Scripts\Status.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
