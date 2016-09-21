@@ -1,14 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{242781AD-1F77-D584-3E06-8A851B257AB0}") = "The Grandfather Clock", "Assembly-CSharp.csproj", "{DF9668E8-B1D8-7265-A1D3-035BAE3779AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{DF9668E8-B1D8-7265-A1D3-035BAE3779AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9668E8-B1D8-7265-A1D3-035BAE3779AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9668E8-B1D8-7265-A1D3-035BAE3779AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9668E8-B1D8-7265-A1D3-035BAE3779AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

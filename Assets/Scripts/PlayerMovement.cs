@@ -26,11 +26,14 @@ public class PlayerMovement : MonoBehaviour {
 	private Stairs currentStairs;
 	public bool walkingOnStairs = false;
 
+	private Animator anim;
+
 	private Status status;
 
 	// Use this for initialization
 	void Start () {
 		status = FindObjectOfType<Status> ().GetComponent<Status> ();
+		anim = GetComponent<Animator> ();
 	}
 
 	private void moveToRight(){
@@ -43,10 +46,14 @@ public class PlayerMovement : MonoBehaviour {
 			} else {
 				Vector3 newScale = new Vector3 (1, 1, 1);
 				transform.localScale = newScale;
-				Vector3 newPosition = new Vector3 (transform.position.x + (movementSpeed*2), transform.position.y, transform.position.z);
+				Vector3 newPosition = new Vector3 (transform.position.x + (movementSpeed * 2), transform.position.y, transform.position.z);
 				transform.position = newPosition;
 			}
-				
+			anim.SetBool ("IsWalking", true);
+			anim.SetBool ("IsBracing", false);
+
+		} else {
+			anim.SetBool ("IsWalking", false);
 		}
 	}
 
@@ -62,9 +69,15 @@ public class PlayerMovement : MonoBehaviour {
 				transform.localScale = newScale;
 				Vector3 newPosition = new Vector3 (transform.position.x - (movementSpeed*2), transform.position.y, transform.position.z);
 				transform.position = newPosition;
-			}
+			} 
+			anim.SetBool ("IsWalking", true);
+			anim.SetBool ("IsBracing", false);
+
+		} else {
+			anim.SetBool ("IsWalking", false);
 		}
 	}
+
 
 	void OnTriggerEnter2D(Collider2D other) {
 
@@ -115,6 +128,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			timeAtDoor = 0f;
 			isBracing = false;
+			anim.SetBool ("isBracing", false);
 		}
 		if (other.GetComponent<Interactible> ()) {
 			touchingInteractible = false;
@@ -142,6 +156,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		if (Input.GetAxis ("Horizontal") < 0) {
 			moveToLeft ();
+		} 
+
+		if (Input.GetAxis ("Horizontal") == 0) {
+			anim.SetBool ("IsWalking", false);
+			anim.SetBool ("IsBracing", false);
 		}
 
 		if (Input.GetButton ("Interact")) {
@@ -201,9 +220,18 @@ public class PlayerMovement : MonoBehaviour {
 				timeAtDoor += Time.deltaTime;
 				if (timeAtDoor >= 0.5f) {
 					isBracing = true;
+					anim.SetBool ("IsBracing", true);
+				} else {
+					anim.SetBool ("IsBracing", false);
 				}
 			}
 		}
+
+//		if (!Input.anyKey) {
+//			//no input, go back to idle animation
+//			anim.SetBool ("IsWalking", false);
+//			anim.SetBool ("IsBracing", false);
+//		}
 
 	}
 		
