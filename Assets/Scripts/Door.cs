@@ -7,6 +7,7 @@ public class Door : MonoBehaviour {
 	public float doorTimer;
 	public bool doorTimerPassed = true;
 	public bool doorTimerStarted = false;
+	public bool isBraced;
 	private float timeToPass = 0.5f;
 
 	private SpriteRenderer spriteRenderer;

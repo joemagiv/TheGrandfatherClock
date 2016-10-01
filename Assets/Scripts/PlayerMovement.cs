@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			timeAtDoor = 0f;
 			isBracing = false;
-			anim.SetBool ("isBracing", false);
+			anim.SetBool ("IsBracing", false);
 		}
 		if (other.GetComponent<Interactible> ()) {
 			touchingInteractible = false;
@@ -220,6 +220,7 @@ public class PlayerMovement : MonoBehaviour {
 				timeAtDoor += Time.deltaTime;
 				if (timeAtDoor >= 0.5f) {
 					isBracing = true;
+					currentDoor.isBraced = true;
 					anim.SetBool ("IsBracing", true);
 				} else {
 					anim.SetBool ("IsBracing", false);

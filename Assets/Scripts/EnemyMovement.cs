@@ -57,11 +57,14 @@ public class EnemyMovement : MonoBehaviour {
 		if (enemyActive) {
 			if (touchingDoor) {
 				if (currentDoor.closed) {
-					if (playerMovement.isBracing) {
+					if (currentDoor.isBraced) {
 						//Player is bracing door, do a timer to see if guy gets kept out
 						timeAtDoor += Time.deltaTime;
 						if (timeAtDoor >= 3f) {
 							status.changeStatus ("Enemy was blocked at door");
+							EnemySpawner enemySpawner = GetComponentInParent<EnemySpawner> ();
+							enemySpawner.alexanderActive = false;
+							Destroy (this.gameObject);
 						}
 					} else {
 						//enemy kicks in door
