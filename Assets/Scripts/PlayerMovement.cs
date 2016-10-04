@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isBracing = true;
 
 	public bool touchingInteractible = false;
-	private Interactible currentInteractible;
+	public Interactible currentInteractible;
 
 	public bool touchingStairs = false;
 	private Stairs currentStairs;
@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		//Colliders for Interactibles
 		if (other.GetComponent<Interactible> ()) {
+			Debug.Log ("I'm touching: " + other.name);
 			touchingInteractible = true;
 			currentInteractible = other.GetComponent<Interactible> ();
 		}
@@ -129,10 +130,11 @@ public class PlayerMovement : MonoBehaviour {
 			timeAtDoor = 0f;
 			isBracing = false;
 			anim.SetBool ("IsBracing", false);
+			currentDoor.isBraced = false;
 		}
 		if (other.GetComponent<Interactible> ()) {
 			touchingInteractible = false;
-			currentInteractible = other.GetComponent<Interactible> ();
+//			currentInteractible = other.GetComponent<Interactible> ();
 		}
 		if (other.GetComponent<Collider2D>().tag == "Barrier") {
 			if (!canMoveToRight) {
@@ -174,6 +176,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (touchingInteractible) {
 				Debug.Log ("examiningObject");
 				status.changeStatus (currentInteractible.statusText);
+				currentInteractible.DisplayCloseUp ();
 			}
 		}
 
